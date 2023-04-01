@@ -1,26 +1,42 @@
 const bcrypt = require("bcrypt");
 
-const { getContactByEmail } = require("../controllers/contacts");
+const { getUserByEmail } = require("../controllers/users");
 const issueToken = require("./issueToken");
 
 const loginHandler = async (email, incomingPassword) => {
-  const contact = await getContactByEmail(email);
+  const user = await getUserByEmail(email);
 
-  if (!contact) {
+  if (!user) {
     // eslint-disable-next-line no-throw-literal
     throw { code: 404, msg: "User not found" };
   }
 
-  const contactPassword = contact.password;
+  const userPassword = user.password;
 
-  const result = bcrypt.compareSync(incomingPassword, contactPassword);
+  const result = bcrypt.compareSync(incomingPassword, userPassword);
 
   if (result) {
-    return issueToken(contact);
+    return issueToken(user);
   } else {
     // eslint-disable-next-line no-throw-literal
     throw { code: 401, msg: "Invalid credentials" };
   }
+
+  // if (!contact) {
+  //   // eslint-disable-next-line no-throw-literal
+  //   throw { code: 404, msg: "User not found" };
+  // }
+
+  // const contactPassword = contact.password;
+
+  // const result = bcrypt.compareSync(incomingPassword, contactPassword);
+
+  // if (result) {
+  //   return issueToken(contact);
+  // } else {
+  //   // eslint-disable-next-line no-throw-literal
+  //   throw { code: 401, msg: "Invalid credentials" };
+  // }
 };
 
 module.exports = loginHandler;

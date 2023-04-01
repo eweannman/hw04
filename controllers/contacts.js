@@ -11,10 +11,10 @@ const getContactById = async (_id) => {
   return contacts;
 };
 
-const getContactByEmail = async (email) => {
-  const contact = await Contact.findOne({ email });
-  return contact;
-};
+// const getContactByEmail = async (email) => {
+//   const contact = await Contact.findOne({ email });
+//   return contact;
+// };
 
 const removeContact = async (_id) => {
   try {
@@ -70,7 +70,7 @@ const updateStatusContact = async (id, favorite) => {
 module.exports = {
   listContacts,
   getContactById,
-  getContactByEmail,
+  // getContactByEmail,
   removeContact,
   addContact,
   updateContact,

@@ -36,8 +36,6 @@ const hashPassword = (pass) => {
   return hashedPassword;
 };
 
-console.log(hashPassword("test12"));
-
 const User = mongoose.model("user", users);
 
 const userValidationSchema = Joi.object({

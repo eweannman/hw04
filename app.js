@@ -9,7 +9,7 @@ const cors = require("cors");
 const { connectDatabase } = require("./startup/database.js");
 connectDatabase();
 
-const contactsRouter = require("./routes/api/routes.js");
+const router = require("./routes/api/routes.js");
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(express.json());
 // albo ten
 // app.use("/api", contactsRouter);
 
-app.use("/api/contacts", contactsRouter);
+app.use("/api", router);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

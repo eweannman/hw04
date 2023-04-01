@@ -6,7 +6,7 @@ const registrationRouter = require("./register");
 const router = express.Router();
 
 router.use("/contacts", contactRouter);
-router.use("/login", loginRouter);
-router.use("/signup", registrationRouter);
+router.use("/users", loginRouter);
+router.use("/users", registrationRouter);
 
 module.exports = router;
